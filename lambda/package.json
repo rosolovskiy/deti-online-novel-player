@@ -1,0 +1,30 @@
+{
+  "name": "deti-online-novel-player",
+  "version": "1.0.0",
+  "description": "An Alexa skill audio player for playing fairy tails in Russian from Deti-Online site",
+  "main": "index.js",
+  "scripts": {
+    "test": "AWS_REGION=us-east-1 mocha test"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "audio player",
+    "fairy tail"
+  ],
+  "author": "Alexey Rosolovskiy",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "ask-sdk": "^2.0.5",
+    "ask-sdk-dynamodb-persistence-adapter": "^2.0.5"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-string": "^1.4.0",
+    "mocha": "^5.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rosolovskiy/deti-online-novel-player"
+  }
+}

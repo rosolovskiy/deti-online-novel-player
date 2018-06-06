@@ -1,0 +1,50 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Plays fairy tails from the https://deti-online.com web site",
+          "examplePhrases": [
+            "Alexa, open deti online",
+            "Alexa, ask deti online to begin story",
+            "Alexa, ask deti online to stop"
+          ],
+          "keywords": [
+            "fairy tails",
+            "streaming",
+            "russian"
+          ],
+          "name": "Deti-Online",
+          "description": "Plays fairy tails in Russian language from the https://deti-online.com web site",
+          "smallIconUri": "https://s3.amazonaws.com/deti-online/alexa-skills/108_fairy_tails.png",
+          "largeIconUri": "https://s3.amazonaws.com/deti-online/alexa-skills/512_fairy_tails.png"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Include your testing instruction (if any) here",
+      "category": "CHILDRENS_MUSIC_AND_AUDIO",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda"
+        },
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ]
+      }
+    },
+    "manifestVersion": "1.0",
+    "permissions": [],
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "isChildDirected": true,
+      "usesPersonalInfo": false
+    }
+  }
+}
