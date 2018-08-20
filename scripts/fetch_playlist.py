@@ -66,7 +66,9 @@ def _extract_mp3_meta(parsed_data):
                 extracted_data["free"] = False
         else:
             logger.debug("Some strange key found: %s on page: %s", k, parsed_data)
-    mp3_filename = path.basename(extracted_data["url"]).strip(".mp3")
+    mp3_filename = path.basename(extracted_data["url"])
+    if mp3_filename.endswith(".mp3"):
+        mp3_filename = mp3_filename[:-4]
     latin_title = re.sub(r"[^\w]", ' ', mp3_filename)
     extracted_data["title"] = latin_title.title()
     return extracted_data
@@ -77,7 +79,9 @@ def get_mp3_link(story_url, re_mp3):
         search = re_mp3.search(html_content, re.MULTILINE)
         if search:
             parsed_data = search.group(1)
-            return _extract_mp3_meta(parsed_data)
+            extracted_dict = _extract_mp3_meta(parsed_data)
+            extracted_dict["referer"] = story_url
+            return extracted_dict
         else:
             return None
 
@@ -111,6 +115,7 @@ def main(argv):
 class TestDataExtraction(unittest.TestCase):
 
     parsed_line = "duration:'1:40:20',file:'https://stat2.deti-online.com/a/wnJzLvo0LIjWf1PTbSo0YQ/1528541932/files/skazki/sbornik-skazok/chernaya-kurica.mp3',title:'Черная курица, или Подземные жители', free: true"
+    parsed_line_staryy_dom = "duration:'1:40:20',file:'https://stat1.deti-online.com/a/t5ql1bkS8lfM0vdY4i-WfA/1528550630/files/skazki/skazki-andersena/staryy-dom.mp3',title:'Черная курица, или Подземные жители', free: true"
 
     def test_comma_in_title_and_duration_with_seconds(self):
         meta_data = _extract_mp3_meta(self.parsed_line)
@@ -127,6 +132,11 @@ class TestDataExtraction(unittest.TestCase):
         meta_data = _extract_mp3_meta(self.parsed_line)
         self.assertEqual(dict, type(meta_data))
         self.assertEqual(meta_data["title"], "Chernaya Kurica")
+    
+    def test_title_stariyy_dom(self):
+        meta_data = _extract_mp3_meta(self.parsed_line_staryy_dom)
+        self.assertEqual(dict, type(meta_data))
+        self.assertEqual(meta_data["title"], "Staryy Dom")
 
 
 if __name__ == "__main__":
