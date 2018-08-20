@@ -48,6 +48,9 @@ def main(argv):
     Reads provided playlist in json format and downloads
     all mp3 files to local path
     python3 download_mp3 mp3/
+
+    TODO: there no proper input parameters handling, but it's low priority,
+          it's just a tool that will be used once...
     """
     
     if len(argv) <= 1:
